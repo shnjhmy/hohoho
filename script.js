@@ -41,3 +41,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+
+  const navLinks = document.querySelectorAll(".nav-link");
+  const sections = document.querySelectorAll("#home, #education, #skills, #about, #software, #creative, #contact");
+  const updateActiveNav = () => {
+    let current = "home";
+    sections.forEach((section) => {
+      if (window.scrollY + 180 >= section.offsetTop) current = section.id;
+    });
+    navLinks.forEach((link) => link.classList.toggle("active", link.getAttribute("href") === `#${current}`));
+  };
+  window.addEventListener("scroll", updateActiveNav, {passive:true});
+  updateActiveNav();

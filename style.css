@@ -207,3 +207,35 @@ footer small{font-size:10px;letter-spacing:1px;color:var(--muted)}
   .hero h1{font-size:65px}
   .photo-wrap{height:340px}
 }
+
+/* Left scrapbook navigation */
+.side-nav{
+  position:fixed;left:22px;top:50%;transform:translateY(-50%);z-index:30;
+  width:205px;padding:22px 16px;background:rgba(255,250,241,.96);
+  border:1px solid rgba(59,36,22,.28);box-shadow:7px 9px 0 rgba(90,56,36,.14);
+  transform-origin:center;transform:translateY(-50%) rotate(-1.2deg);
+}
+.side-nav:before{content:"";position:absolute;inset:7px;border:1px dashed rgba(90,56,36,.25);pointer-events:none}
+.side-nav-title{position:relative;font-family:"Playfair Display",serif;font-size:24px;line-height:.9;color:var(--espresso);padding:2px 6px 10px;letter-spacing:-1px}
+.side-nav-title span{font-family:"Caveat";font-size:30px;color:var(--caramel);letter-spacing:0}
+.side-nav-rule{height:2px;background:var(--coffee);margin:0 6px 10px;position:relative}
+.nav-link{position:relative;display:flex;align-items:center;gap:8px;padding:9px 7px;margin:2px 0;color:var(--coffee);text-decoration:none;font-family:"Caveat";font-size:19px;font-weight:700;line-height:1.05;transition:.2s ease}
+.nav-link span{font-family:"DM Sans";font-size:9px;min-width:19px;text-align:center;color:var(--caramel);font-weight:700}
+.nav-link:hover,.nav-link.active{background:#ead8c3;color:var(--espresso);transform:translateX(4px) rotate(-.5deg)}
+.nav-link.active:after{content:"✦";margin-left:auto;color:var(--caramel);font-size:14px}
+#home,#education,#skills,#about,#software,#creative,#contact{scroll-margin-top:30px}
+.scrapbook{margin-left:calc(205px + 30px);width:min(1180px,calc(100% - 265px))}
+@media(max-width:1150px){
+  .side-nav{left:10px;width:175px}.scrapbook{margin-left:205px;width:calc(100% - 220px)}
+  .nav-link{font-size:17px}.side-nav-title{font-size:21px}.side-nav-title span{font-size:27px}
+}
+@media(max-width:950px){
+  .side-nav{position:sticky;top:0;left:auto;transform:none;width:100%;margin:0 auto 14px;padding:10px 12px;display:flex;align-items:center;gap:4px;overflow-x:auto;box-shadow:0 5px 12px rgba(59,36,22,.14);z-index:40;rotate:0deg}
+  .side-nav:before{display:none}.side-nav-title,.side-nav-rule{display:none}
+  .nav-link{white-space:nowrap;margin:0;padding:8px 10px;font-size:17px}
+  .scrapbook{margin:30px auto;width:min(1180px,calc(100% - 30px))}
+}
+@media(max-width:650px){
+  .side-nav{margin:0 7px 10px;width:calc(100% - 14px);border-radius:2px}
+  .nav-link{font-size:16px;padding:7px 8px}.scrapbook{width:calc(100% - 14px);margin:7px auto}
+}

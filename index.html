@@ -10,6 +10,17 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <nav class="side-nav" aria-label="Portfolio navigation">
+    <div class="side-nav-title">Martin<br><span>Belbider</span></div>
+    <div class="side-nav-rule"></div>
+    <a href="#home" class="nav-link active"><span>⌂</span> Home</a>
+    <a href="#education" class="nav-link"><span>01</span> Educational Background</a>
+    <a href="#skills" class="nav-link"><span>02</span> Skills</a>
+    <a href="#about" class="nav-link"><span>03</span> About</a>
+    <a href="#software" class="nav-link"><span>04</span> Software Skills</a>
+    <a href="#creative" class="nav-link"><span>05</span> Creative Focus</a>
+    <a href="#contact" class="nav-link"><span>✉</span> Contact</a>
+  </nav>
   <div class="paper-texture"></div>
 
   <main class="scrapbook">
@@ -18,7 +29,7 @@
     <span class="doodle doodle-heart heart-a">♡</span>
     <span class="doodle doodle-flower flower-a">✿</span>
 
-    <header class="hero">
+    <header class="hero" id="home">
       <div class="polaroid reveal">
         <div class="tape tape-top"></div>
         <div class="photo-wrap">
@@ -46,7 +57,7 @@
       </div>
     </header>
 
-    <section class="contact-strip reveal">
+    <section class="contact-strip reveal" id="contact">
       <div class="section-label">Contact Me</div>
       <div class="contact-grid">
         <div><span>🎂</span><small>Born</small><b> November 30, 2006</b></div>
@@ -59,7 +70,7 @@
 
     <section class="editorial-grid">
       <div class="left-stack">
-        <section class="paper-card education reveal">
+        <section class="paper-card education reveal" id="education">
           <div class="section-heading"><span>01</span> Educational Background</div>
           <div class="timeline">
             <article><i></i><div><h3>FRANCISCO DE CASTRO ELEMENTARY SCHOOL</h3><p>2011 — 2017</p></div></article>
@@ -68,7 +79,7 @@
           <div class="margin-doodle">keep<br>learning</div>
         </section>
 
-        <section class="paper-card skills reveal">
+        <section class="paper-card skills reveal" id="skills">
           <div class="section-heading"><span>02</span> Skills</div>
           <div class="skill-row"><div><b>Time Management</b><em>90%</em></div><div class="bar"><i data-value="90"></i></div></div>
           <div class="skill-row"><div><b>Planning</b><em>90%</em></div><div class="bar"><i data-value="90"></i></div></div>
@@ -82,7 +93,7 @@
         </section>
       </div>
 
-      <section class="experience paper-card reveal">
+      <section class="experience paper-card reveal" id="about">
         <div class="section-heading"><span>03</span> Experience & Activities</div>
 
         <article class="experience-item">
@@ -144,7 +155,7 @@
       </section>
     </section>
 
-    <section class="software paper-card reveal">
+    <section class="software paper-card reveal" id="software">
       <div class="section-heading"><span>04</span> Software Skills</div>
       <div class="software-grid">
         <div class="software-card illustrator">
@@ -162,7 +173,7 @@
       </div>
     </section>
 
-    <section class="creative paper-card reveal">
+    <section class="creative paper-card reveal" id="creative">
       <div class="section-heading"><span>05</span> Creative Focus</div>
       <div class="focus-grid">
         <article><div class="focus-icon">🎨</div><h3>Graphic Design</h3><p>Visually Engaging and Effective Design.</p></article>
