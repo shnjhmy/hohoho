@@ -44,13 +44,74 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   const navLinks = document.querySelectorAll(".nav-link");
-  const sections = document.querySelectorAll("#home, #education, #skills, #about, #software, #creative, #contact");
-  const updateActiveNav = () => {
-    let current = "home";
-    sections.forEach((section) => {
-      if (window.scrollY + 180 >= section.offsetTop) current = section.id;
+  const sections = [...document.querySelectorAll("#home, #education, #skills, #about, #software, #creative, #contact")];
+
+  const setActiveNav = (id) => {
+    navLinks.forEach((link) => {
+      link.classList.toggle("active", link.getAttribute("href") === `#${id}`);
     });
-    navLinks.forEach((link) => link.classList.toggle("active", link.getAttribute("href") === `#${current}`));
   };
-  window.addEventListener("scroll", updateActiveNav, {passive:true});
+
+  const updateActiveNav = () => {
+    const navOffset = 100;
+    const bottomReached =
+      window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 30;
+
+    // Contact is the final section, so make it active when the page reaches its bottom.
+    if (bottomReached) {
+      setActiveNav("contact");
+      return;
+    }
+
+    // Find the section currently closest to the top of the visible content.
+    let current = sections[0].id;
+    let smallestDistance = Infinity;
+
+    sections.forEach((section) => {
+      const distance = Math.abs(section.getBoundingClientRect().top - navOffset);
+      if (section.getBoundingClientRect().top <= window.innerHeight * 0.55 && distance < smallestDistance) {
+        smallestDistance = distance;
+        current = section.id;
+      }
+    });
+
+    setActiveNav(current);
+  };
+
+  // Clicking a navigation item immediately highlights the selected section.
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      const id = link.getAttribute("href").slice(1);
+      setActiveNav(id);
+    });
+  });
+
+  window.addEventListener("scroll", updateActiveNav, { passive: true });
+  window.addEventListener("resize", updateActiveNav);
   updateActiveNav();
+
+  // Reliable internal navigation with the sticky/fixed navigation offset.
+  document.querySelectorAll('a.nav-link[href^="#"]').forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const targetId = link.getAttribute("href");
+      const target = document.querySelector(targetId);
+      if (!target) return;
+
+      event.preventDefault();
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      history.replaceState(null, "", targetId);
+    });
+  });
+
+  // If the page opens with a section hash, scroll to that section after layout.
+  if (window.location.hash) {
+    const target = document.querySelector(window.location.hash);
+    if (target) {
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+          setActiveNav(target.id);
+        }, 50);
+      });
+    }
+  }
