@@ -115,3 +115,20 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   }
+
+
+/* Active navigation follows the section visible while scrolling */
+document.addEventListener("DOMContentLoaded", () => {
+  const links = [...document.querySelectorAll(".nav-link")];
+  const sections = [...document.querySelectorAll("#home, #education, #skills, #about, #software, #creative, #contact")];
+  const activate = (id) => links.forEach(link => {
+    link.classList.toggle("active", link.getAttribute("href") === "#" + id);
+  });
+  const observer = new IntersectionObserver(entries => {
+    const visible = entries.filter(entry => entry.isIntersecting)
+      .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+    if (visible) activate(visible.target.id);
+  }, { threshold: [0.25, 0.5, 0.75] });
+  sections.forEach(section => observer.observe(section));
+  links.forEach(link => link.addEventListener("click", () => activate(link.hash.slice(1))));
+});

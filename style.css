@@ -239,3 +239,108 @@ footer small{font-size:10px;letter-spacing:1px;color:var(--muted)}
   .side-nav{margin:0 7px 10px;width:calc(100% - 14px);border-radius:2px}
   .nav-link{font-size:16px;padding:7px 8px}.scrapbook{width:calc(100% - 14px);margin:7px auto}
 }
+
+
+/* Single-page scroll layout: one navigation item/section visible per viewport */
+html{scroll-behavior:smooth;scroll-snap-type:y proximity}
+body{scroll-snap-type:y proximity}
+.scrapbook.single-scroll-page{overflow:visible}
+.scrapbook.single-scroll-page > .hero,
+.scrapbook.single-scroll-page #education,
+.scrapbook.single-scroll-page #skills,
+.scrapbook.single-scroll-page #about,
+.scrapbook.single-scroll-page #software,
+.scrapbook.single-scroll-page #creative,
+.scrapbook.single-scroll-page #contact{
+  scroll-snap-align:start;
+  scroll-margin-top:24px;
+}
+/* Each numbered portfolio section becomes its own full-screen page-like panel */
+.scrapbook.single-scroll-page > .hero{
+  min-height:calc(100vh - 70px);
+  display:grid;
+  align-content:center;
+}
+.scrapbook.single-scroll-page #education,
+.scrapbook.single-scroll-page #skills,
+.scrapbook.single-scroll-page #about,
+.scrapbook.single-scroll-page #software,
+.scrapbook.single-scroll-page #creative,
+.scrapbook.single-scroll-page #contact{
+  min-height:calc(100vh - 70px);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  margin-top:0;
+  margin-bottom:32px;
+}
+/* Make each content section independent rather than sharing the editorial two-column row */
+.scrapbook.single-scroll-page .editorial-grid{
+  display:contents;
+}
+.scrapbook.single-scroll-page .left-stack{
+  display:contents;
+}
+.scrapbook.single-scroll-page #education,
+.scrapbook.single-scroll-page #skills,
+.scrapbook.single-scroll-page #about{
+  width:100%;
+}
+.scrapbook.single-scroll-page #education,
+.scrapbook.single-scroll-page #skills{
+  max-width:900px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.scrapbook.single-scroll-page #about{
+  max-width:1000px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.scrapbook.single-scroll-page #software,
+.scrapbook.single-scroll-page #creative{
+  max-width:1000px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.scrapbook.single-scroll-page #contact{
+  min-height:calc(100vh - 150px);
+}
+.scrapbook.single-scroll-page .mini-note{
+  display:none;
+}
+.scrapbook.single-scroll-page .side-nav{
+  position:fixed;
+}
+@media(max-width:950px){
+  .scrapbook.single-scroll-page > .hero{min-height:auto;padding-top:35px}
+  .scrapbook.single-scroll-page #education,
+  .scrapbook.single-scroll-page #skills,
+  .scrapbook.single-scroll-page #about,
+  .scrapbook.single-scroll-page #software,
+  .scrapbook.single-scroll-page #creative,
+  .scrapbook.single-scroll-page #contact{min-height:calc(100vh - 110px)}
+}
+
+
+/* Contact brown box: reduce its footprint while keeping the same theme */
+#contact{
+  min-height:auto !important;
+  width:min(100%, 760px);
+  max-width:760px;
+  margin:24px auto 36px !important;
+  padding:24px 28px !important;
+  align-self:center;
+  box-sizing:border-box;
+}
+#contact .contact-inner,
+#contact .contact-content{
+  max-width:100%;
+}
+@media(max-width:650px){
+  #contact{
+    width:100%;
+    margin:18px auto 28px !important;
+    padding:18px 16px !important;
+  }
+}
